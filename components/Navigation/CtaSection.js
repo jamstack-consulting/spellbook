@@ -8,8 +8,8 @@ const ctaClassnames = {
 const CtaSection = ({ callToActions }) => {
   return (
     <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-      {callToActions.map((cta) => (
-        <a className={ctaClassnames[cta.type]} href={cta.href}>
+      {callToActions.map((cta, idx) => (
+        <a key={idx} className={ctaClassnames[cta.type]} href={cta.href}>
           {cta.displayText}
         </a>
       ))}

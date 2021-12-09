@@ -4,26 +4,35 @@ import Footer from "../Footer";
 import { links, ctas, logo } from "../../navigation";
 
 const layouts = {
-  "two-column": ({ children }) => (
-    <div style={{ columnCount: 2 }} className="mx-2" children={children} />
+  "centered-column": ({ children }) => (
+    <div
+      className="content prose prose-xl prose-blue mx-auto px-6 my-5"
+      children={children}
+    />
   ),
+  "two-column": ({ children }) => (
+    <div
+      style={{ columnCount: 2, columnGap: "2rem" }}
+      className="content prose prose-xl max-w-7xl prose-blue mx-auto px-6 my-5"
+      children={children}
+    />
+  ),
+  default: (props) => <div {...props} />,
 };
 
-const Layout = ({ children }) => (
-  <div className="">
-    <Head>
-      <title>technomancy.dev</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-    <Navigation links={links} ctas={ctas} logo={logo} />
-    <div
-      style={{ columnCount: 2, columnGap: "3rem" }}
-      className="max-w-7xl mx-auto px-6"
-    >
-      {children}
+const Layout = ({ layout, children }) => {
+  const layoutToDisplay = layouts[layout] || layouts.default;
+  return (
+    <div className="">
+      <Head>
+        <title>technomancy.dev</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Navigation links={links} ctas={ctas} logo={logo} />
+      <div>{layoutToDisplay({ children })}</div>
+      <Footer />
     </div>
-    <Footer />
-  </div>
-);
+  );
+};
 
 export default Layout;

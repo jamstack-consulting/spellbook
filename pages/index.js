@@ -1,22 +1,24 @@
-import { promises as fs } from "fs";
-import glob from "fast-glob";
+// import { promises as fs } from "fs";
+import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 import components from "../components/mdx-components";
 import Layout from "../components/Layout";
 
+import { createFilePath } from "../utils/mdxUtils";
+
 const contentGlob = "mdx/index.mdx";
 
 export async function getStaticProps() {
-  const [indexMdxFile] = glob.sync(contentGlob);
-  const mdxSource = await fs.readFile(indexMdxFile);
-  const mdx = await serialize(mdxSource);
-  return { props: { mdx } };
+  const mdxSource = await createFilePath(contentGlob);
+  const { content, data } = matter(mdxSource);
+  const mdx = await serialize(content);
+  return { props: { mdx, data } };
 }
 
-export default function Home({ mdx }) {
+export default function Home({ mdx, data }) {
   return (
-    <Layout>
+    <Layout layout={data.layout}>
       <MDXRemote {...mdx} components={components} />
     </Layout>
   );

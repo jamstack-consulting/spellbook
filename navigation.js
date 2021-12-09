@@ -3,7 +3,7 @@ import { AnnotationIcon } from "@heroicons/react/outline";
 export const links = [
   {
     type: "SUBMENU",
-    displayText: "Solutions",
+    name: "Solutions",
     subMenuItems: [
       {
         name: "Messaging",
@@ -107,7 +107,7 @@ export const socials = [
 ];
 
 export const logo = {
-  name: "Dribbble",
+  name: "Spellbook",
   href: "#",
   jsx: (props) => (
     <>

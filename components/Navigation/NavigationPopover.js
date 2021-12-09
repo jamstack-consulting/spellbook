@@ -6,7 +6,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const NavigationPopover = ({ popoverText, children, solutions }) => {
+const NavigationPopover = ({ popoverText, children }) => {
   return (
     <Popover className="relative">
       {({ open }) => (
@@ -17,7 +17,7 @@ const NavigationPopover = ({ popoverText, children, solutions }) => {
               "group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             )}
           >
-            <span>Solutions</span>
+            <span>{popoverText}</span>
             <ChevronDownIcon
               className={classNames(
                 open ? "text-gray-600" : "text-gray-400",

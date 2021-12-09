@@ -9,13 +9,14 @@ const DesktopNavigation = ({ links }) => {
   );
 };
 
-const resolver = (navigationItem) => {
+const resolver = (navigationItem, idx) => {
   if (navigationItem.type === "SUBMENU") {
     return (
-      <NavigationPopover>
+      <NavigationPopover popoverText={navigationItem.name} key={idx}>
         <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">
           {navigationItem.subMenuItems.map((item) => (
             <a
+              key={item.name}
               key={item.name}
               href={item.href}
               className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
@@ -39,6 +40,7 @@ const resolver = (navigationItem) => {
   }
   return (
     <a
+      key={idx}
       href={navigationItem.href}
       className="text-base font-medium text-gray-500 hover:text-gray-900"
     >

@@ -1,45 +1,37 @@
-import glob from "fast-glob";
 import matter from "gray-matter";
 import path from "path";
-import { promises as fs } from "fs";
+import fs from "fs";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 
 import components from "../components/mdx-components";
 import Layout from "../components/Layout";
-import { pageFilePaths, posts } from "../utils/mdxUtils";
-
-const contentPath = "mdx/pages";
-const contentGlob = `${contentPath}/**/*.mdx`;
+import { pageFilePaths, PAGES_PATH } from "../utils/mdxUtils";
 
 // TODO need to pick layout based on frontmatter.
-export default function Page({ mdxSource, frontMatter }) {
+export default function Page({ source, frontMatter }) {
   return (
-    <Layout>
-      <MDXRemote {...mdxSource} components={components} />
+    <Layout layout={frontMatter.layout}>
+      <MDXRemote {...source} components={components} />
     </Layout>
   );
 }
 
 export async function getStaticProps({ params: { slug } }) {
-  const files = glob.sync(contentGlob);
+  const postFilePath = path.join(PAGES_PATH, `${slug}.mdx`);
+  const source = fs.readFileSync(postFilePath);
 
-  const pathRegex = new RegExp(`^${contentPath}/${path.join(...slug)}.mdx$`);
-  const fullPath = files.find((file) => pathRegex.test(file));
+  const { content, data } = matter(source);
 
-  if (!fullPath) {
+  if (!postFilePath) {
     console.warn("No MDX file found for slug");
   }
-  debugger;
-  console.log("wut", pageFilePaths);
-  const mdxSource = await fs.readFile(fullPath);
-  const { content, data } = matter(mdxSource);
 
-  const mdx = await serialize(content);
+  const mdxSource = await serialize(content);
 
   return {
     props: {
-      mdxSource: mdx,
+      source: mdxSource,
       frontMatter: data,
     },
   };

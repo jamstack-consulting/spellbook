@@ -18,7 +18,7 @@ export default function Page({ source, frontMatter }) {
 }
 
 export async function getStaticProps({ params: { slug } }) {
-  const postFilePath = path.join(PAGES_PATH, `${slug}.mdx`);
+  const postFilePath = path.join(PAGES_PATH, `${slug.join("/")}.mdx`);
   const source = fs.readFileSync(postFilePath);
 
   const { content, data } = matter(source);
@@ -38,11 +38,9 @@ export async function getStaticProps({ params: { slug } }) {
 }
 
 export async function getStaticPaths() {
-  const paths = pageFilePaths
-    // Remove file extensions for page paths
-    .map((path) => path.replace(/\.mdx?$/, ""))
-    // Map the path into the static paths object required by Next.js
-    .map((slug) => ({ params: { slug: slug.split("/") } }));
+  const paths = pageFilePaths.map((slug) => ({
+    params: { slug: slug.split("/") },
+  }));
 
   return {
     paths,

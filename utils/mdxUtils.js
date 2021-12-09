@@ -1,3 +1,4 @@
+import glob from "fast-glob";
 import fs, { promises } from "fs";
 import path from "path";
 
@@ -6,10 +7,12 @@ export const PAGES_PATH = "mdx/pages";
 
 // postFilePaths is the list of all mdx files inside the POSTS_PATH directory
 export const createFilePaths = (filePath) =>
-  fs
-    .readdirSync(path.join(process.cwd(), filePath))
-    // Only include md(x) files
-    .filter((path) => /\.mdx?$/.test(path));
+  glob
+    .sync(`${filePath}/**/*.mdx`)
+    .map((file) => file.replace(`${filePath}/`, ""))
+    .map((file) => file.replace(new RegExp(path.extname(file) + "$"), ""));
+// Only include md(x) files
+// .filter((path) => /\.mdx?$/.test(path));
 
 export const createFilePath = (filePath) => promises.readFile(filePath);
 

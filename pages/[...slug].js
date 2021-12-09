@@ -7,10 +7,12 @@ import { MDXRemote } from "next-mdx-remote";
 
 import components from "../components/mdx-components";
 import Layout from "../components/Layout";
+import { pageFilePaths, posts } from "../utils/mdxUtils";
 
 const contentPath = "mdx/pages";
 const contentGlob = `${contentPath}/**/*.mdx`;
 
+// TODO need to pick layout based on frontmatter.
 export default function Page({ mdxSource, frontMatter }) {
   return (
     <Layout>
@@ -28,7 +30,8 @@ export async function getStaticProps({ params: { slug } }) {
   if (!fullPath) {
     console.warn("No MDX file found for slug");
   }
-
+  debugger;
+  console.log("wut", pageFilePaths);
   const mdxSource = await fs.readFile(fullPath);
   const { content, data } = matter(mdxSource);
 
@@ -43,18 +46,11 @@ export async function getStaticProps({ params: { slug } }) {
 }
 
 export async function getStaticPaths() {
-  const files = glob.sync(contentGlob);
-
-  const paths = files.map((file) => {
-    const filename = file.replace(`${contentPath}/`, "");
-    const slug = filename.replace(new RegExp(path.extname(file) + "$"), "");
-
-    return {
-      params: {
-        slug: slug.split("/"),
-      },
-    };
-  });
+  const paths = pageFilePaths
+    // Remove file extensions for page paths
+    .map((path) => path.replace(/\.mdx?$/, ""))
+    // Map the path into the static paths object required by Next.js
+    .map((slug) => ({ params: { slug: slug.split("/") } }));
 
   return {
     paths,

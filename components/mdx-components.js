@@ -33,10 +33,17 @@ const components = {
   ),
   Content: (props) => (
     <div
-      className="content prose prose-blue max-w-prose mx-auto my-5"
+      className="content prose prose-xl prose-blue mx-auto my-5"
       {...props}
     />
   ),
+  Columns: ({ columnCount, ...props }) => (
+    <div
+      className={`lg:grid lg:grid-cols-${columnCount} lg:gap-6`}
+      {...props}
+    />
+  ),
+  Column: (props) => <div {...props} />,
 };
 
 export default components;

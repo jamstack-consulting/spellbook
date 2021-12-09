@@ -3,39 +3,13 @@ import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import CtaSectionMobile from "./CtaSectionMobile";
 
-const resolver = (item) => {
-  if (item.type === "SUBMENU") {
-    return item.subMenuItems.map(resolver);
-  }
-  return (
-    <a
-      key={item.name}
-      href={item.href}
-      className="-m-3 p-3 flex items-center rounded-lg hover:bg-gray-50"
-    >
-      {item.icon && (
-        <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
-          <item.icon className="h-6 w-6" aria-hidden="true" />
-        </div>
-      )}
-      <div className="ml-4 text-base font-medium text-gray-900">
-        {item.name}
-      </div>
-    </a>
-  );
-};
-
-const MobileNavigation = ({ navigationLinks, callToActions }) => {
+const MobileNavigation = ({ links, callToActions, logo }) => {
+  // move logo into nav object like socials icons
   return (
     <Fragment>
       <div className="flex justify-start lg:w-0 lg:flex-1">
         <a href="#">
-          <span className="sr-only">Workflow</span>
-          <img
-            className="h-8 w-auto sm:h-10"
-            src="https://tailwindui.com/img/logos/workflow-mark-purple-600-to-indigo-600.svg"
-            alt=""
-          />
+          <logo.jsx />
         </a>
       </div>
       <div className="-mr-2 -my-2 md:hidden">
@@ -76,7 +50,7 @@ const MobileNavigation = ({ navigationLinks, callToActions }) => {
               </div>
               <div className="mt-6">
                 <nav className="grid grid-cols-1 gap-7">
-                  {navigationLinks.map((item) => resolver(item))}
+                  {links.map((item) => resolver(item))}
                 </nav>
               </div>
             </div>
@@ -89,6 +63,28 @@ const MobileNavigation = ({ navigationLinks, callToActions }) => {
         </Popover.Panel>
       </Transition>
     </Fragment>
+  );
+};
+
+const resolver = (item) => {
+  if (item.type === "SUBMENU") {
+    return item.subMenuItems.map(resolver);
+  }
+  return (
+    <a
+      key={item.name}
+      href={item.href}
+      className="-m-3 p-3 flex items-center rounded-lg hover:bg-gray-50"
+    >
+      {item.icon && (
+        <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
+          <item.icon className="h-6 w-6" aria-hidden="true" />
+        </div>
+      )}
+      <div className="ml-4 text-base font-medium text-gray-900">
+        {item.name}
+      </div>
+    </a>
   );
 };
 

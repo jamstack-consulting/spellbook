@@ -1,5 +1,13 @@
 import Head from "next/head";
 import Navigation from "../Navigation";
+import Footer from "../Footer";
+import { links, ctas, logo } from "../../navigation";
+
+const layouts = {
+  "two-column": ({ children }) => (
+    <div style={{ columnCount: 2 }} className="mx-2" children={children} />
+  ),
+};
 
 const Layout = ({ children }) => (
   <div className="">
@@ -7,15 +15,14 @@ const Layout = ({ children }) => (
       <title>technomancy.dev</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <Navigation />
-    {/* <div className="hidden lg:block"> */}
-    {/* <div><DesktopNav /></div> */}
-    {/* </div> */}
-    {/* <div className="md:hidden"> */}
-    {/* <div><MobileNav /></div> */}
-    {/* </div> */}
-    <div className="">{children}</div>
-    <footer>{/* <Footer /> */}</footer>
+    <Navigation links={links} ctas={ctas} logo={logo} />
+    <div
+      style={{ columnCount: 2, columnGap: "3rem" }}
+      className="max-w-7xl mx-auto px-6"
+    >
+      {children}
+    </div>
+    <Footer />
   </div>
 );
 

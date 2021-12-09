@@ -1,6 +1,14 @@
 import { Popover, Transition } from "@headlessui/react";
 import NavigationPopover from "./NavigationPopover";
 
+const DesktopNavigation = ({ links }) => {
+  return (
+    <Popover.Group as="nav" className="hidden md:flex space-x-10">
+      {links.map(resolver)}
+    </Popover.Group>
+  );
+};
+
 const resolver = (navigationItem) => {
   if (navigationItem.type === "SUBMENU") {
     return (
@@ -36,14 +44,6 @@ const resolver = (navigationItem) => {
     >
       {navigationItem.name}
     </a>
-  );
-};
-
-const DesktopNavigation = ({ navigationLinks }) => {
-  return (
-    <Popover.Group as="nav" className="hidden md:flex space-x-10">
-      {navigationLinks.map(resolver)}
-    </Popover.Group>
   );
 };
 

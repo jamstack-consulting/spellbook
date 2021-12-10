@@ -14,25 +14,26 @@ const fixLi = (children) => {
 
 const Wrapper = (props) => {
   const toc = React.Children.toArray(props.children)[0];
-  console.log("toc", toc);
-  const ol = toc.props.children;
-  const h1s = fixLi(React.Children.toArray(ol.props.children));
+  if (toc.props.mdxType === "nav") {
+    const ol = toc.props.children;
+    const h1s = fixLi(React.Children.toArray(ol.props.children));
 
-  const newToc = {
-    ...toc,
-    props: {
-      ...toc.props,
-      children: { ...ol, props: { ...ol.props, children: h1s } },
-    },
-  };
+    const newToc = {
+      ...toc,
+      props: {
+        ...toc.props,
+        children: { ...ol, props: { ...ol.props, children: h1s } },
+      },
+    };
+    return (
+      <>
+        {newToc}
+        {props.children.slice(1)}
+      </>
+    );
+  }
 
-  return (
-    <>
-      {newToc}
-      {/* {h1s} */}
-      {props.children.slice(1)}
-    </>
-  );
+  return <>{props.children}</>;
 };
 
 export default Wrapper;

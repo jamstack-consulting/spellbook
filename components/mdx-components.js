@@ -1,3 +1,5 @@
+import Wrapper from "./Wrapper";
+
 const components = {
   h1: (props) => <h1 className="text-4xl font-black" {...props} />,
   h2: (props) => <h2 className="text-3xl font-black" {...props} />,
@@ -6,6 +8,7 @@ const components = {
   em: (props) => <em>{props.children}</em>,
   del: (props) => <span>{props.children}</span>,
   strong: (props) => <strong>{props.children}</strong>,
+  nav: (props) => <nav {...props} />,
   blockquote: (props) => (
     <blockquote
       className="p-4 italic border-l-4 bg-neutral-100 text-neutral-600 border-blue-500"
@@ -48,6 +51,7 @@ const components = {
     />
   ),
   Column: (props) => <div {...props} />,
+  wrapper: Wrapper,
 };
 
 export default components;

@@ -5,7 +5,7 @@ import fs from "fs";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 import rehypeToc from "rehype-toc";
-
+import rehypeSlugger from "rehype-slug";
 import rehypeWrap from "rehype-wrap";
 
 import components from "../components/mdx-components";
@@ -37,6 +37,7 @@ export async function getStaticProps({ params: { slug } }) {
     mdxOptions: {
       rehypePlugins: [
         [rehypeWrap, { wrapper: "div.page-content" }],
+        rehypeSlugger,
         [
           rehypeToc,
           {

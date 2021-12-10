@@ -1,0 +1,17 @@
+.no-page-outline {
+  nav.page-outline {
+    display: none;
+  }
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: 65ch auto;
+  .page-outline {
+    order: 2;
+    ol {
+      position: sticky;
+      top: 10px;
+    }
+  }
+}

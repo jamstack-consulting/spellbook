@@ -6,7 +6,6 @@ const fixLi = (children) => {
 
     // return <section>{h1}</section>;
     return React.cloneElement(h1, {
-      style: { ...h1.props.style, opacity: 0.5 },
       children: [a, fixLi(tail)],
     });
   });

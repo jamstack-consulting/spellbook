@@ -32,7 +32,7 @@ export const links = [
 export const ctas = [
   {
     type: "secondary",
-    href: "teach-yourself",
+    href: "/teach-yourself",
     displayText: "Teach Yourself",
   },
   {

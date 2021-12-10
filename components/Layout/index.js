@@ -2,7 +2,7 @@ import Head from "next/head";
 import Navigation from "../Navigation";
 import Footer from "../Footer";
 import { links, ctas, logo } from "../../navigation";
-
+// import "./index.css";
 const layouts = {
   "centered-column": ({ children }) => (
     <div
@@ -12,7 +12,7 @@ const layouts = {
   ),
   "two-column": ({ children }) => (
     <div
-      style={{ columnCount: 2, columnGap: "2rem" }}
+      // style={{ columnCount: 2, columnGap: "2rem" }}
       className="content prose prose-xl max-w-7xl prose-blue mx-auto px-6 my-5"
       children={children}
     />

@@ -6,31 +6,75 @@ layout: default
 <Hero>
 <Content>
 
-# Websites made as easy as saying abracadabra... <br/> Maybe easier actually
+# Spellbook is your handy little bag of tricks.
 
-My name is Levi and this is my website. I hope on it you find things that are
-useful to you but really _this website_ is for me, its the only one of its kind.
-Every other site I make is for someone else.
+MDX is changing what we can do with static sites.
 
-Check out some of the things I am working on below,
-or maybe take a peek at the [technonomicon](https://notes.technomancy.dev/)
+This is mostly just a set of conventions that [liltechnomancer](https://technomancy.dev/) wants to use to make sites.
+
+> This is for fun for now. Use this at your own risk.
 
 </Content>
 <Card>
 
 <Content>
 
-## Learn everything you need to know to teach yourself how to become a professional web developer.
+## Frontmatter driven pages.
 
-Learning web development can be difficult, especially when doing it
-yourself. You need a plan and the right resources to pull it off.
-Luckily you are not alone. People have done this before, and they have
-worn paths in the _wilderness_ for you to follow.
+You can do pretty nifty things with MDX, one of which is use
+the frontmatter to drive the layout of the page.
+Allowing you to make some awesome templates you can use, and then focus on writing some content.
 
-<Button href="/teach-yourself">
-  Learn More
-</Button>
+<Button href="/just-a-template">Like this page.</Button>
+
+Or you can use a combo of MDX components to hobble together a page for a quick prototype. Like the page you are on for example.
+
+Look at the code below!
+
 </Content>
 </Card>
 
 </Hero>
+
+<Content>
+
+```mdx
+---
+title: Spellbook.
+layout: default
+---
+
+<Hero>
+<Content>
+
+# Spellbook is your handy little bag of tricks.
+
+MDX is changing what we can do with static sites.
+
+This is mostly just a set of conventions that [liltechnomancer](https://technomancy.dev/) wants to use to make sites.
+
+> This is for fun for now. Use this at your own risk.
+
+</Content>
+<Card>
+<Content> 
+  
+## Frontmatter driven pages.
+
+You can do pretty nifty things with MDX, one of which is use
+the frontmatter to drive the layout of the page.
+Allowing you to make some awesome templates you can use, and then focus on writing some content.
+
+<Button href="/posts/just-a-template">Like this page.</Button>
+
+Or you can use a combo of MDX components to hobble together a page for a quick prototype. Like the page you are on for example.
+
+Look at the code below!
+
+</Content>
+</Card>
+
+</Hero>
+```
+
+</Content>

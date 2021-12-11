@@ -19,7 +19,9 @@ const layouts = {
       children={children}
     />
   ),
-  default: (props) => <div className={"no-page-outline"} {...props} />,
+  default: (props) => (
+    <div className={"no-page-outline max-w-7xl m-auto"} {...props} />
+  ),
 };
 
 const Layout = ({ layout, children }) => {

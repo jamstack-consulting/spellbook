@@ -35,7 +35,9 @@ const components = {
       <div className="px-4 py-5 sm:p-6" {...props}></div>
     </div>
   ),
-  Content: (props) => <div className="content prose" {...props} />,
+  Content: (props) => (
+    <div className="content prose max-w-7xl px-2" {...props} />
+  ),
   Columns: ({ columnCount, ...props }) => (
     <div
       className={`lg:grid lg:grid-cols-${columnCount} lg:gap-6`}

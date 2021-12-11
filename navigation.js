@@ -1,39 +1,39 @@
 import { AnnotationIcon } from "@heroicons/react/outline";
 
 export const links = [
-  {
-    type: "SUBMENU",
-    name: "Solutions",
-    subMenuItems: [
-      {
-        name: "Messaging",
-        description:
-          "Speak directly to your customers in a more meaningful way.",
-        href: "#",
-        icon: AnnotationIcon,
-      },
-      {
-        name: "Live Chat",
-        description: "Your customers' data will be safe and secure.",
-        href: "#",
-        // icon: ChatAlt2Icon,
-      },
-    ],
-  },
-  {
-    name: "Inbox",
-    description:
-      "Get a better understanding of where your traffic is coming from.",
-    href: "teach-yourself",
-    // icon: InboxIcon,
-  },
+  // {
+  //   type: "SUBMENU",
+  //   name: "Solutions",
+  //   subMenuItems: [
+  //     {
+  //       name: "Messaging",
+  //       description:
+  //         "Speak directly to your customers in a more meaningful way.",
+  //       href: "#",
+  //       icon: AnnotationIcon,
+  //     },
+  //     {
+  //       name: "Live Chat",
+  //       description: "Your customers' data will be safe and secure.",
+  //       href: "#",
+  //       // icon: ChatAlt2Icon,
+  //     },
+  //   ],
+  // },
+  // {
+  //   name: "Inbox",
+  //   description:
+  //     "Get a better understanding of where your traffic is coming from.",
+  //   href: "teach-yourself",
+  //   // icon: InboxIcon,
+  // },
 ];
 
 export const ctas = [
   {
     type: "secondary",
-    href: "/teach-yourself",
-    displayText: "Teach Yourself",
+    href: "/posts/be-cool",
+    displayText: "See a post",
   },
   {
     type: "primary",

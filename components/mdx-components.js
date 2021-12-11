@@ -1,4 +1,5 @@
 import Wrapper from "./Wrapper";
+import Hero from "./Hero";
 
 const components = {
   h1: (props) => <h1 className="text-4xl font-black" {...props} />,
@@ -25,25 +26,20 @@ const components = {
     </button>
   ),
   Box: (props) => (
-    <div className="not-prose">
+    <div className="">
       <div className="bg-white overflow-hidden shadow sm:rounded-lg">
         <div className="px-4 py-5 sm:p-6" {...props}></div>
       </div>
     </div>
   ),
   Card: (props) => (
-    <div className="not-prose">
+    <div className="">
       <div className="bg-gray-50 overflow-hidden sm:rounded-lg">
         <div className="px-4 py-5 sm:p-6" {...props}></div>
       </div>
     </div>
   ),
-  Content: (props) => (
-    <div
-      className="content prose prose-xl prose-blue mx-auto my-5"
-      {...props}
-    />
-  ),
+  Content: (props) => <div className="content prose" {...props} />,
   Columns: ({ columnCount, ...props }) => (
     <div
       className={`lg:grid lg:grid-cols-${columnCount} lg:gap-6`}
@@ -52,6 +48,7 @@ const components = {
   ),
   Column: (props) => <div {...props} />,
   wrapper: Wrapper,
+  Hero: Hero,
 };
 
 export default components;

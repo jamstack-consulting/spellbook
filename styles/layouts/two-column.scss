@@ -1,0 +1,22 @@
+// Very simple example still needs mobile view.
+
+.layout--two-column > nav.page-outline {
+  display: none;
+}
+
+@screen lg {
+  .layout--two-column > nav.page-outline {
+    display: block;
+  }
+  .layout--two-column {
+    display: grid;
+    grid-template-columns: 60ch auto;
+    .page-outline {
+      order: 2;
+      ol {
+        position: sticky;
+        top: 6rem;
+      }
+    }
+  }
+}

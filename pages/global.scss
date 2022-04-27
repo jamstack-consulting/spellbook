@@ -2,6 +2,9 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@import "../styles/rehype-prism-plus.scss";
+@import "../styles/layouts";
+
 @font-face {
   font-family: "young-serif";
   src: url("../public/fonts/YoungSerif-Regular.ttf") format("truetype");
@@ -10,29 +13,11 @@
   font-display: swap;
 }
 
+// Layout fix for now. This will be removed when this is resolved.
+// https://github.com/hashicorp/next-mdx-remote/issues/263
+// because them the nav just wont be inserted at all.
 .no-page-outline {
   nav.page-outline {
     display: none;
-  }
-}
-
-nav.page-outline {
-  display: none;
-}
-
-@screen lg {
-  nav.page-outline {
-    display: block;
-  }
-  .two-column {
-    display: grid;
-    grid-template-columns: 65ch auto;
-    .page-outline {
-      order: 2;
-      ol {
-        position: sticky;
-        top: 10px;
-      }
-    }
   }
 }

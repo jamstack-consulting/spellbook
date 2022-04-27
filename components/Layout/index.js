@@ -15,7 +15,7 @@ const layouts = {
   "two-column": ({ children }) => (
     <div
       className={
-        "two-column content prose prose-xl prose-blue mx-auto my-5 max-w-7xl px-6"
+        "layout--two-column content prose prose-xl prose-blue mx-auto my-5 max-w-7xl px-6"
       }
       children={children}
     />

@@ -1,5 +1,9 @@
 import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
+import remarkMdxToc from "remark-mdx-toc";
+import rehypeSlugger from "rehype-slug";
+import rehypePrism from "rehype-prism-plus";
+import remarkEndWithCodeBlock from "remark-end-with-code-block";
 
 import { createFilePath, pageFilePaths } from "../utils/mdxUtils";
 
@@ -37,7 +41,18 @@ export async function getStaticProps() {
     // this allows mdx components to have access to the postsData.
     // so that a component can do what it wants.
     scope: { postsData },
-    mdxOptions: {},
+    mdxOptions: {
+      remarkPlugins: [() => remarkEndWithCodeBlock(mdxSource), remarkMdxToc],
+      rehypePlugins: [
+        rehypeSlugger,
+        [
+          rehypePrism,
+          {
+            showLineNumbers: false,
+          },
+        ],
+      ],
+    },
   });
   return { props: { mdx, frontmatter: data } };
 }

@@ -6,6 +6,7 @@ import { serialize } from "next-mdx-remote/serialize";
 import rehypeSlugger from "rehype-slug";
 import rehypePrism from "rehype-prism-plus";
 import remarkMdxToc from "remark-mdx-toc";
+import remarkEndWithCodeBlock from "remark-end-with-code-block";
 
 import { pageFilePaths, PAGES_PATH } from "../utils/mdxUtils";
 
@@ -15,11 +16,10 @@ export default Page;
 
 export async function getStaticProps({ params: { slug } }) {
   const postFilePath = path.join(PAGES_PATH, `${slug.join("/")}.mdx`);
-  const source = fs.readFileSync(postFilePath);
+  const source = fs.readFileSync(postFilePath, "utf8");
 
   const { content, data } = matter(source);
 
-  console.log(content);
   if (!postFilePath) {
     console.warn("No MDX file found for slug");
   }
@@ -29,7 +29,7 @@ export async function getStaticProps({ params: { slug } }) {
   // do this at some point.
   const mdxSource = await serialize(content, {
     mdxOptions: {
-      remarkPlugins: [remarkMdxToc],
+      remarkPlugins: [() => remarkEndWithCodeBlock(source), remarkMdxToc],
       rehypePlugins: [
         rehypeSlugger,
         [

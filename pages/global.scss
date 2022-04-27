@@ -1,0 +1,38 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@font-face {
+  font-family: "young-serif";
+  src: url("../public/fonts/YoungSerif-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.no-page-outline {
+  nav.page-outline {
+    display: none;
+  }
+}
+
+nav.page-outline {
+  display: none;
+}
+
+@screen lg {
+  nav.page-outline {
+    display: block;
+  }
+  .two-column {
+    display: grid;
+    grid-template-columns: 65ch auto;
+    .page-outline {
+      order: 2;
+      ol {
+        position: sticky;
+        top: 10px;
+      }
+    }
+  }
+}

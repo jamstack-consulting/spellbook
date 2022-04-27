@@ -1,5 +1,7 @@
 # Spellbook
 
+## A little spellcasting never hurt anybody.
+
 The links, ctas, and logo in the navigation and footer are managed in the `navigation.js` file.
 
 > Need some cool fonts? Check out [Open Foundry](https://open-foundry.com/fonts)

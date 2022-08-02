@@ -22,7 +22,8 @@
     "rehype-prism-plus": "^1.3.1",
     "rehype-slug": "^5.0.0",
     "sass": "^1.44.0",
-    "remark-mdx-toc": "*"
+    "remark-mdx-toc": "*",
+    "remark-end-with-code-block": "*"
   },
   "devDependencies": {
     "@netlify/plugin-nextjs": "^4.0.0-rc.2",

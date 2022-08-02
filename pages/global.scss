@@ -4,18 +4,12 @@
 
 @import "../styles/rehype-prism-plus.scss";
 @import "../styles/layouts";
-
-@font-face {
-  font-family: "young-serif";
-  src: url("../public/fonts/YoungSerif-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+@import "../styles/fonts.scss";
 
 // Layout fix for now. This will be removed when this is resolved.
 // https://github.com/hashicorp/next-mdx-remote/issues/263
 // because them the nav just wont be inserted at all.
+
 .no-page-outline {
   nav.page-outline {
     display: none;

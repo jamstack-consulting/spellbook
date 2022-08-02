@@ -12,7 +12,7 @@ const TableOfContents = {
 
 const components = {
   TableOfContents: TableOfContents,
-  h1: (props) => <h1 className="font-young-serif font-black" {...props} />,
+  h1: (props) => <h1 className="font-display font-black" {...props} />,
   h2: (props) => <h2 className="font-display font-black" {...props} />,
   h3: (props) => <h3 className="font-display font-black" {...props} />,
   p: (props) => <p className="" {...props} />,

@@ -3,6 +3,7 @@ import { serialize } from "next-mdx-remote/serialize";
 import remarkMdxToc from "remark-mdx-toc";
 import rehypeSlugger from "rehype-slug";
 import rehypePrism from "rehype-prism-plus";
+import remarkGfm from "remark-gfm";
 import remarkEndWithCodeBlock from "remark-end-with-code-block";
 
 import { createFilePath, pageFilePaths } from "../utils/mdxUtils";
@@ -42,7 +43,11 @@ export async function getStaticProps() {
     // so that a component can do what it wants.
     scope: { postsData },
     mdxOptions: {
-      remarkPlugins: [() => remarkEndWithCodeBlock(mdxSource), remarkMdxToc],
+      remarkPlugins: [
+        () => remarkEndWithCodeBlock(mdxSource),
+        remarkMdxToc,
+        remarkGfm,
+      ],
       rehypePlugins: [
         rehypeSlugger,
         [
